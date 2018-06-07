@@ -22,7 +22,7 @@ var server = app.listen(process.env.PORT || 8080, function () {
     console.log("App now running on port", port);
 });
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('Wow it worked!'))
 
 // //Initiallising connection string
 // var dbConfig = {
