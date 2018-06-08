@@ -69,7 +69,7 @@ app.get("/user", function (req, res) {
         }
     });
 
-    connection.query("SELECT * FROM test_table", function (err, rows, fields) {
+    connection.query("SELECT name as childname FROM test_table", function (err, rows, fields) {
         if (!err) {
             res.send(rows);
         } else {
