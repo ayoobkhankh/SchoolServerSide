@@ -1,7 +1,8 @@
 //Initiallising node modules
 var express = require("express");
 var bodyParser = require("body-parser");
-var mysql = require('mysql');
+// var mysql = require('mysql');
+var Sequelize = require('sequelize');
 var app = express();
 
 // Body Parser Middleware
@@ -46,6 +47,38 @@ app.get('/', (req, res) => res.send('Wow it worked!'))
 //         }
 //     });
 // }
+
+
+var sequelize = new Sequelize('testdb', 'root', 'Moveon@786', {
+    host: '127.0.0.1',
+    port: 3306,
+    dialect: 'mysql'
+});
+
+sequelize.authenticate().then(function (err) {
+    if (err) {
+        console.log('There is connection in ERROR');
+    } else {
+        console.log('Connection has been established successfully');
+    }
+});
+
+//Create Item Table Structure
+var Item = sequelize.define('Item', {
+    id: { type: Sequelize.STRING, primaryKey: true },
+    name: Sequelize.STRING,
+    description: Sequelize.STRING,
+    qty: Sequelize.INTEGER
+});
+
+//Applying Item Table to database
+sequelize.sync({ force: true }).then(function (err) {
+    if (err) {
+        console.log('An error occur while creating table');
+    } else {
+        console.log('Item table created successfully');
+    }
+});
 
 //GET API
 app.get("/user", function (req, res) {
