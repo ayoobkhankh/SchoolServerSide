@@ -63,9 +63,9 @@ app.get("/user", function (req, res) {
 
     connection.connect(function (err) {
         if (!err) {
-            res.send("Database is connected ... \n\n");
+            console.log("Database is connected ... \n\n");
         } else {
-            res.send("Error connecting database ... \n\n");
+            console.log("Error connecting database ... \n\n");
         }
     });
 
