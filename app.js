@@ -62,19 +62,19 @@ app.get("/user", function (req, res) {
 
     connection.connect(function (err) {
         if (!err) {
-            connection.log("Database is connected ... \n\n");
+            res.send("Database is connected ... \n\n");
         } else {
-            connection.log("Error connecting database ... \n\n");
+            res.send("Error connecting database ... \n\n");
         }
     });
 
-    connection.query("SELECT * FROM test_table;", function (err, rows, fields) {
-        if (!err) {
-            res.send(rows);
-        } else {
-            console.log("There is an error")
-        }
-    })
+    // connection.query("SELECT * FROM test_table;", function (err, rows, fields) {
+    //     if (!err) {
+    //         res.send(rows);
+    //     } else {
+    //         console.log("There is an error")
+    //     }
+    // })
     connection.end();
 });
 
