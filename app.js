@@ -1,7 +1,7 @@
 //Initiallising node modules
 var express = require("express");
 var bodyParser = require("body-parser");
-// var sql = require("mssql");
+var mysql = require('mysql');
 var app = express();
 
 // Body Parser Middleware
@@ -24,25 +24,34 @@ var server = app.listen(process.env.PORT || 8080, function () {
 
 app.get('/', (req, res) => res.send('Wow it worked!'))
 
-// //Initiallising connection string
-// var dbConfig = {
-//     user: “ < dbUserName > ”,
-//     password: “ < dbPassword > ”,
-//     server: “ < dbHost_URL > ”,
-//     database: ” < dbName > ”
-// };
+var connection = mysql.createConnection({
+    // multipleStatements: true,
+    host: '127.0.0.1',
+    port: 2206,
+    user: 'root',
+    password: 'Moveon@786',
+    database: 'testdb'
+});
 
-// //Function to connect to database and execute query
+connection.connect(function (err) {
+    if (!err) {
+        console.log("Database is connected ... \n\n");
+    } else {
+        console.log("Error connecting database ... \n\n");
+    }
+});
+
+//Function to connect to database and execute query
 // var executeQuery = function (res, query) {
-//     sql.connect(dbConfig, function (err) {
+//     mysql.connect(dbConfig, function (err) {
 //         if (err) {
 //             console.log("Error while connecting database :- " + err);
 //             res.send(err);
 //         } else {
 //             // create Request object
-//             var request = new sql.Request();
+//             // var query = "SELECT * FROM test_table;"
 //             // query to the database
-//             request.query(query, function (err, res) {
+//             connection.query(query, function (err, res) {
 //                 if (err) {
 //                     console.log("Error while querying database :- " + err);
 //                     res.send(err);
@@ -54,11 +63,17 @@ app.get('/', (req, res) => res.send('Wow it worked!'))
 //     });
 // }
 
-// //GET API
-// app.get("/api/user", function (req, res) {
-//     var query = "select * from [user]";
-//     executeQuery(res, query);
-// });
+//GET API
+app.get("/user", function (req, res) {
+    connection.query("SELECT * FROM test_table;", function (err, rows, fields) {
+        if (!err) {
+            console.log('The solution is: ', rows);
+        } else {
+            console.log("There is an error")
+        }
+    })
+    connection.end();
+});
 
 // //POST API
 // app.post("/api/user", function (req, res) {
