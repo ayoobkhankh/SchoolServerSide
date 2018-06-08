@@ -24,22 +24,6 @@ var server = app.listen(process.env.PORT || 8080, function () {
 
 app.get('/', (req, res) => res.send('Wow it worked!'))
 
-var connection = mysql.createConnection({
-    // multipleStatements: true,
-    host: '127.0.0.1',
-    port: 2206,
-    user: 'root',
-    password: 'Moveon@786',
-    database: 'testdb'
-});
-
-connection.connect(function (err) {
-    if (!err) {
-        console.log("Database is connected ... \n\n");
-    } else {
-        console.log("Error connecting database ... \n\n");
-    }
-});
 
 //Function to connect to database and execute query
 // var executeQuery = function (res, query) {
@@ -66,13 +50,32 @@ connection.connect(function (err) {
 //GET API
 app.get("/user", function (req, res) {
     // res.send('User route worked!')
-    connection.query("SELECT * FROM test_table;", function (err, rows, fields) {
+
+    var connection = mysql.createConnection({
+        // multipleStatements: true,
+        host: '127.0.0.1',
+        port: 3306,
+        user: 'root',
+        password: 'Moveon@786',
+        database: 'testdb'
+    });
+
+    connection.connect(function (err) {
         if (!err) {
-            res.send(rows);
+            res.send("Database is connected ... \n\n");
         } else {
-            console.log("There is an error")
+            res.send("Error connecting database ... \n\n");
         }
-    })
+    });
+
+
+    // connection.query("SELECT * FROM test_table;", function (err, rows, fields) {
+    //     if (!err) {
+    //         res.send(rows);
+    //     } else {
+    //         console.log("There is an error")
+    //     }
+    // })
     connection.end();
 });
 
