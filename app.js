@@ -57,7 +57,8 @@ app.get("/user", function (req, res) {
         port: 3306,
         user: 'root',
         password: 'Moveon@786',
-        database: 'testdb'
+        database: 'testdb',
+        socketPath: '/var/run/mysqld/mysqld.sock'
     });
 
     connection.connect(function (err) {
@@ -68,13 +69,13 @@ app.get("/user", function (req, res) {
         }
     });
 
-    // connection.query("SELECT * FROM test_table;", function (err, rows, fields) {
-    //     if (!err) {
-    //         res.send(rows);
-    //     } else {
-    //         console.log("There is an error")
-    //     }
-    // })
+    connection.query("SELECT * FROM test_table", function (err, rows, fields) {
+        if (!err) {
+            res.send(rows);
+        } else {
+            console.log("There is an error")
+        }
+    })
     connection.end();
 });
 
