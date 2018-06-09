@@ -52,7 +52,8 @@ app.get('/', (req, res) => res.send('Wow it worked!'))
 var sequelize = new Sequelize('testdb', 'root', 'Moveon@786', {
     host: '127.0.0.1',
     port: 3306,
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: { socketPath: '/var/run/mysqld/mysqld.sock' }
 });
 
 sequelize.authenticate().then(function (err) {
