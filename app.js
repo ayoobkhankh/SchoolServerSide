@@ -23,7 +23,7 @@ var server = app.listen(process.env.PORT || 8080, function () {
     console.log("App now running on port", port);
 });
 
-app.get('/', (req, res) => res.send('Va alaikumussalam.'))
+app.get('/', (req, res) => res.send('<hi>Va alaikumussalam.</hi>'))
 
 
 //Function to connect to database and execute query
