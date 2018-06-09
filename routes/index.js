@@ -1,6 +1,6 @@
-var models = require('../models');
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
 
 router.get('/', (req, res) => res.send('<h1>Va alaikumussalam.</h1>'))
 /* GET home page. */
