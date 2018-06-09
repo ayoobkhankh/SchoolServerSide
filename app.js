@@ -67,7 +67,7 @@ sequelize.authenticate().then(function (err) {
 //Create Item Table Structure
 var Item = sequelize.define('Item', {
     id: { type: Sequelize.STRING, primaryKey: true },
-    name: Sequelize.STRING,
+    studentname: Sequelize.STRING,
     description: Sequelize.STRING,
     qty: Sequelize.INTEGER
 });
