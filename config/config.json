@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "Moveon@786",
-    "database": "test_db",
+    "database": "testdb",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "dialectOptions": {
