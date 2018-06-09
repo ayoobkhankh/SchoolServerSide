@@ -16,4 +16,4 @@ sequelize.sync({ force: true }).then(function (err) {
     }
 });
 
-module.exports.models.Item = Item;
+module.exports = 
