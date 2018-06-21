@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         ShopName: DataTypes.STRING,
         ShopAddress: DataTypes.STRING,
         ShopPlace: DataTypes.STRING,
+        ShopContactPerson: DataTypes.STRING,
         ShopContactNo: DataTypes.STRING,
         ShopType: DataTypes.STRING
     }, {});
