@@ -10,4 +10,13 @@ router.get('/test', function (req, res, next) {
 
 });
 
+router.get('/insert', function (req, res, next) {
+    models.shops.create(req.body, { fields: ['ShopName', 'ShopAddress', 'ShopPlace', 'ShopContactPerson', 'ShopContactNo', 'ShopType'] })
+        .then(function (shops) {
+            res.json({ worked: shops.dataValues })
+        })
+    // jwt.sign({ user: user }, 'secretkey', (err, token) => {}
+
+});
+
 module.exports = router;
