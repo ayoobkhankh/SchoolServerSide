@@ -11,6 +11,7 @@ var db = require('./models/index')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var prodcutsRouter = require('./routes/products');
+var shopsRouter = require('./routes/shops');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use(bodyParser.json())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', prodcutsRouter);
+app.use('/shops', shopsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
