@@ -11,7 +11,14 @@ router.get('/test', function (req, res, next) {
 });
 
 router.post('/insert', function (req, res, next) {
-    models.shops.create(req.body, { fields: ['ShopName', 'ShopAddress', 'ShopPlace', 'ShopContactPerson', 'ShopContactNo', 'ShopType'] })
+    models.shops.create({
+        ShopName: req.body.ShopName,
+        ShopAddress: req.body.ShopAddress,
+        ShopPlace: req.body.ShopPlace,
+        ShopContactPerson: req.body.ShopContactPerson,
+        ShopContactNo: req.body.ShopContactNo,
+        ShopType: eq.body.ShopType
+    })
         .then(function (shops) {
             res.json({ worked: shops.dataValues })
         })
