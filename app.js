@@ -44,7 +44,7 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-  db.Sequelize.sync();
+
 
   // Access control
   // res.header("Access-Control-Allow-Origin", "*");
@@ -56,7 +56,7 @@ app.use(function (err, req, res, next) {
 var server = app.listen(process.env.PORT || 8080, function () {
   var port = server.address().port;
   console.log("App now running on port", port);
-
+  db.sequelize.sync();
 });
 
 // app.set('port', process.env.PORT || 8080);
