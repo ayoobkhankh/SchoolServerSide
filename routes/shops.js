@@ -17,7 +17,7 @@ router.post('/insert', function (req, res, next) {
         ShopPlace: req.body.ShopPlace,
         ShopContactPerson: req.body.ShopContactPerson,
         ShopContactNo: req.body.ShopContactNo,
-        ShopType: eq.body.ShopType
+        ShopType: req.body.ShopType
     })
         .then(function (shops) {
             res.json({ worked: shops.dataValues })
