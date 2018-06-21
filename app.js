@@ -6,6 +6,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser')
 var cors = require('cors');
 var Sequelize = require('sequelize');
+var db = require('./models/index')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -43,7 +44,7 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-  Sequelize.sync();
+  db.Sequelize.sync();
 
   // Access control
   // res.header("Access-Control-Allow-Origin", "*");
