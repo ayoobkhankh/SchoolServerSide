@@ -4,7 +4,7 @@ var models = require('../models');
 
 router.get('/test', function (req, res, next) {
     models.shops.findAll().then(function (shops) {
-        res.json({ worked: shops })
+        res.json(shops)
     })
     // jwt.sign({ user: user }, 'secretkey', (err, token) => {
 
