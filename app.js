@@ -25,7 +25,7 @@ app.use(express.json());
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 // app.use(bodyParser)
-// app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.use('/', indexRouter);
@@ -66,4 +66,3 @@ var server = app.listen(process.env.PORT || 8080, function () {
 // var server = app.listen(app.get('port'), function () {
 //   debug('Express server listening on port ' + server.address().port);
 // });
-
