@@ -10,17 +10,18 @@ router.get('/SendList', function (req, res, next) {
 
 });
 
-router.post('/insert', function (req, res, next) {
-    models.shops.create({
-        ShopName: req.body.ShopName,
-        ShopAddress: req.body.ShopAddress,
-        ShopPlace: req.body.ShopPlace,
-        ShopContactPerson: req.body.ShopContactPerson,
-        ShopContactNo: req.body.ShopContactNo,
-        ShopType: req.body.ShopType
+router.post('/upsert', function (req, res, next) {
+    models.customers.upsert({
+        id: req.body.ShopName,
+        CustName: req.body.CustName,
+        CustAddress: req.body.CustAddress,
+        CustPlace: req.body.CustPlace,
+        CustContactPerson: req.body.CustContactPerson,
+        CustContactNo: req.body.CustContactNo,
+        CustType: req.body.CustType
     })
         .then(function (shops) {
-            res.json({ worked: shops.dataValues })
+            res.json({ worked: customers.dataValues })
         })
     // jwt.sign({ user: user }, 'secretkey', (err, token) => {}
 
