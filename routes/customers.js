@@ -12,7 +12,7 @@ router.get('/SendList', function (req, res, next) {
 
 router.post('/upsert', function (req, res, next) {
     models.customers.upsert({
-        id: req.body.ShopName,
+        id: req.body.id,
         CustName: req.body.CustName,
         CustAddress: req.body.CustAddress,
         CustPlace: req.body.CustPlace,
@@ -20,8 +20,8 @@ router.post('/upsert', function (req, res, next) {
         CustContactNo: req.body.CustContactNo,
         CustType: req.body.CustType
     })
-        .then(function (res) {
-            res.json({ worked: res.dataValues })
+        .then(function (customers) {
+            res.json({ worked: customers.dataValues })
         })
     // jwt.sign({ user: user }, 'secretkey', (err, token) => {}
 
