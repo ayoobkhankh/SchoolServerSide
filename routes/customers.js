@@ -20,7 +20,7 @@ router.post('/upsert', function (req, res, next) {
         CustContactNo: req.body.CustContactNo,
         CustType: req.body.CustType
     })
-        .then(function (shops) {
+        .then(function (customers) {
             res.json({ worked: customers.dataValues })
         })
     // jwt.sign({ user: user }, 'secretkey', (err, token) => {}
