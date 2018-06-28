@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
-router.get('/test', function (req, res, next) {
-    models.shops.findAll().then(function (shops) {
-        res.json(shops)
+router.get('/SendList', function (req, res, next) {
+    models.customers.findAll({ attributes: ['id', 'CustName', 'CustAddress', 'CustPlace', 'CustContactPerson', 'CustContactNo', 'CustType'] }).then(function (customers) {
+        res.json(customers)
     })
     // jwt.sign({ user: user }, 'secretkey', (err, token) => {
 
