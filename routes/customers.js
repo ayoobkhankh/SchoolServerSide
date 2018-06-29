@@ -12,7 +12,7 @@ router.get('/SendList', function (req, res, next) {
 
 router.post('/upsert', function (req, res, next) {
     models.customers.upsert({
-        id: req.body.id,
+        id: parseInt(req.body.id),
         CustName: req.body.CustName,
         CustAddress: req.body.CustAddress,
         CustPlace: req.body.CustPlace,
