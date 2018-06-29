@@ -21,7 +21,7 @@ router.post('/upsert', function (req, res, next) {
         CustType: req.body.CustType
     })
         .then(function (customers) {
-            res.json({ worked: customers.dataValues })
+            res.json({ "message": "Created" })
         })
     // jwt.sign({ user: user }, 'secretkey', (err, token) => {}
 
