@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
-// router.get('/SendList', function (req, res, next) {
-//     models.customers.findAll({ attributes: ['id', 'CustName', 'CustAddress', 'CustPlace', 'CustContactPerson', 'CustContactNo', 'CustType'] }).then(function (customers) {
-//         res.json(customers)
-//     })
-// });
+router.get('/SendList', function (req, res, next) {
+    models.taxes.findAll({ attributes: ['id', 'TaxName', 'SGSTRate', 'CGSTRate', 'IGSTRate', 'CESSRate'] }).then(function (taxes) {
+        res.json(taxes)
+    })
+});
 
 // router.post('/upsert', function (req, res, next) {
 //     models.customers.upsert({
