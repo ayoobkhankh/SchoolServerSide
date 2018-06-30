@@ -1,46 +1,28 @@
 var express = require('express');
 var router = express.Router();
-var jwt = require('jsonwebtoken');
 var models = require('../models');
 
-function verifyToken(req, res, next) {
-    var bearerHeader = req.headers['authorization'];
-    if (typeof bearerHeader !== undefined) {
-        try {
-            // const decode = jwt.verify(bearerHeader, 'secretkey')
-            const bearer = bearerHeader.split(' ');
-            const bearerToken = bearer[1];
-            req.token = bearerToken;
-            // console.log(bearerToken);
-            next()
-        } catch (err) {
-            res.sendStatus(403)
-        }
-    } else {
-        res.sendStatus(403)
-    }
-}
-
-router.post('/tryjwt', verifyToken, (req, res, next) => {
-    jwt.verify(req.token, 'secretkey', (err, authData) => {
-        if (err) {
-            res.sendStatus(403)
-        } else {
-            res.json({ message: 'Its done', authData });
-        }
+router.get('/SendList', function (req, res, next) {
+    models.customers.findAll({ attributes: ['id', 'CustName', 'CustAddress', 'CustPlace', 'CustContactPerson', 'CustContactNo', 'CustType'] }).then(function (customers) {
+        res.json(customers)
     })
-
 });
 
-router.get('/login', function (req, res, next) {
-    const user = {
-        id: 1,
-        usename: 'ayoob',
-        email: 'ayoob@gmail.com'
-    }
-    jwt.sign({ user: user }, 'secretkey', (err, token) => {
-        res.json({ token: token })
-    });
+router.post('/upsert', function (req, res, next) {
+    models.customers.upsert({
+        id: parseInt(req.body.id),
+        CustName: req.body.CustName,
+        CustAddress: req.body.CustAddress,
+        CustPlace: req.body.CustPlace,
+        CustContactPerson: req.body.CustContactPerson,
+        CustContactNo: req.body.CustContactNo,
+        CustType: req.body.CustType
+    })
+        .then(function (customers) {
+            res.json({ "message": "Created" })
+        })
+    // jwt.sign({ user: user }, 'secretkey', (err, token) => {}
+
 });
 
 module.exports = router;

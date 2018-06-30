@@ -6,8 +6,6 @@ router.get('/SendList', function (req, res, next) {
     models.customers.findAll({ attributes: ['id', 'CustName', 'CustAddress', 'CustPlace', 'CustContactPerson', 'CustContactNo', 'CustType'] }).then(function (customers) {
         res.json(customers)
     })
-    // jwt.sign({ user: user }, 'secretkey', (err, token) => {
-
 });
 
 router.post('/upsert', function (req, res, next) {
