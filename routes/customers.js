@@ -17,12 +17,14 @@ router.post('/upsert', function (req, res, next) {
         CustContactPerson: req.body.CustContactPerson,
         CustContactNo: req.body.CustContactNo,
         CustType: req.body.CustType
+    }).then(function (customers) {
+        res.json({ "message": "Created" })
+    }).catch(function (err) {
+        res.json({ "message": "An error occured!" })
     })
-        .then(function (customers) {
-            res.json({ "message": "Created" })
-        })
     // jwt.sign({ user: user }, 'secretkey', (err, token) => {}
-
 });
+
+
 
 module.exports = router;
