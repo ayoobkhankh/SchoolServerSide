@@ -50,10 +50,10 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 
-  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-  res.header('Expires', '-1');
-  res.header('Pragma', 'no-cache');
-  next()
+  // res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  // res.header('Expires', '-1');
+  // res.header('Pragma', 'no-cache');
+  // next()
 
   // Access control
   // res.header("Access-Control-Allow-Origin", "*");
