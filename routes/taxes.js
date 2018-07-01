@@ -3,7 +3,7 @@ var router = express.Router();
 var models = require('../models');
 
 router.get('/SendList', function (req, res, next) {
-    models.taxes.findAll().then(function (taxes) {
+    models.taxes.findAll({ attributes: ['id', 'TaxName', 'SGSTRate', 'CGSTRate', 'IGSTRate', 'CESSRate'] }).then(function (taxes) {
         res.json(taxes);
     })
 });

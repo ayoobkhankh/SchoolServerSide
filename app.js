@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser')
+var nocache = require('nocache')
 var cors = require('cors');
 var Sequelize = require('sequelize');
 var db = require('./models/index')
@@ -19,10 +20,10 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('etag', false);
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(nocache())
 // app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
@@ -51,10 +52,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 
-  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-  res.header('Expires', '-1');
-  res.header('Pragma', 'no-cache');
-  next()
 
   // Access control
   // res.header("Access-Control-Allow-Origin", "*");
