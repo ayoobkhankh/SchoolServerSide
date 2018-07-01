@@ -18,7 +18,7 @@ router.post('/upsert', function (req, res, next) {
         CustContactNo: req.body.CustContactNo,
         CustType: req.body.CustType
     }).then(function (customers) {
-        res.json({ "message": "Created" })
+        res.json({ "message": "Customer details saved" })
     }).catch(function (err) {
         res.json({ "message": "An error occured!" })
     })
