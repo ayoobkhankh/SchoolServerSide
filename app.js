@@ -19,7 +19,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('etag', false);
+// app.set('etag', false);
+app.disable('etag');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -48,8 +49,7 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   //no caching
-  req.headers['if-none-match'] = '';
-  req.headers['if-modified-since'] = '';
+  res.setHeader('Cache-Control', 'no-cache', 'no-store');
   next();
 
   // render the error page
