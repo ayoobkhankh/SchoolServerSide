@@ -4,7 +4,6 @@ var models = require('../models');
 
 router.get('/SendList', function (req, res, next) {
     models.taxes.findAll().then(function (taxes) {
-        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
         res.json(taxes);
     })
 });

@@ -50,6 +50,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 
+  app.set('etag', false);
   // res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
   // res.header('Expires', '-1');
   // res.header('Pragma', 'no-cache');
