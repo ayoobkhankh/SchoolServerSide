@@ -17,5 +17,5 @@ module.exports = (sequelize, DataTypes) => {
     //     this.password = hash;
     //     next();
     // })
-    // return users;
+    return users;
 };
