@@ -6,8 +6,8 @@ var logger = require('morgan');
 var bodyParser = require('body-parser')
 var cors = require('cors');
 var Sequelize = require('sequelize');
-var _ = require("lodash");
-var jwt = require('jsonwebtoken');
+// var _ = require("lodash");
+// var jwt = require('jsonwebtoken');
 var db = require('./models/index');
 
 

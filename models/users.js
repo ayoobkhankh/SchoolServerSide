@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
     };
 
-    users.hook('beforeCreate', async function (next) {
-        const hash = await bcrypt.hash(this.password, 10);
-        this.password = hash;
-        next();
-    })
+    // users.hook('beforeCreate', async function (next) {
+    //     const hash = await bcrypt.hash(this.password, 10);
+    //     this.password = hash;
+    //     next();
+    // })
     return users;
 };
