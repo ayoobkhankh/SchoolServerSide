@@ -7,15 +7,20 @@ module.exports = (sequelize, DataTypes) => {
         email: { type: Sequelize.STRING, unique: true },
         password: DataTypes.STRING,
         token: Sequelize.STRING
-    }, {});
+    }, {
+            freezeTableName: true,
+            instanceMethods: {
+                generateHash(password) {
+                    return bcrypt.hash(password, bcrypt.genSaltSync(8));
+                },
+                validPassword(password) {
+                    return bcrypt.compare(password, this.password);
+                }
+            }
+        });
     users.associate = function (models) {
         // associations can be defined here
     };
 
-    // users.hook('beforeCreate', async function (next) {
-    //     const hash = await bcrypt.hash(this.password, 10);
-    //     this.password = hash;
-    //     next();
-    // })
     return users;
 };
