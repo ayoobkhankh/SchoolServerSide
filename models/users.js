@@ -1,6 +1,8 @@
 'use strict';
 
 var Sequelize = require('sequelize');
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
     var users = sequelize.define('users', {
         username: { type: Sequelize.STRING, unique: true },
@@ -19,6 +21,16 @@ module.exports = (sequelize, DataTypes) => {
     //         });
     //     });
     // }
+    users.beforeCreate(function hashpassword(password) {
+        bcrypt.genSalt(11, function (err, salt) {
+            if (err) console.log(err);
+            // salt = result;
+            bcrypt.hash(password, salt, function (err, result) {
+                if (err) console.log(err);
+                users.password = result;
+            })
+        })
+    })
 
     // users.beforeCreate(function (users, options, cb) {
     //     debug('Info: ' + 'Storing the password');
