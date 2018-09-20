@@ -18,16 +18,16 @@ router.post('/create', function (req, res, next) {
   })
 });
 
-async function hashpassword(password) {
+function hashpassword(password) {
   var salt;
   var hashedpassword;
-  await bcrypt.genSalt(11, function (err, result) {
+  bcrypt.genSalt(11, function (err, result) {
     if (err) console.log(err);
     salt = result;
-  })
-  await bcrypt.hash(password, salt, function (err, result) {
-    if (err) console.log(err);
-    hashedpassword = result;
+    bcrypt.hash(password, salt, function (err, result) {
+      if (err) console.log(err);
+      hashedpassword = result;
+    })
   })
   return hashedpassword;
 }
