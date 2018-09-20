@@ -19,20 +19,19 @@ router.post('/create', function (req, res, next) {
 });
 
 function hashpassword(password) {
-  var salt;
+  // var salt;
   var hashedpassword;
-  bcrypt.genSalt(11, function (err, result) {
+  bcrypt.genSalt(11, function (err, salt) {
     if (err) console.log(err);
-    salt = result;
+    // salt = result;
     bcrypt.hash(password, salt, function (err, result) {
       if (err) console.log(err);
-      hashedpassword = result;
+      console.log(result)
     })
   })
-  return hashedpassword;
 }
 
-
+hashpassword('Ayoob');
 
 // router.post('/upsert', function (req, res, next) {
 //   models.customers.upsert({
