@@ -2,12 +2,14 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
+const bcrypt = require('bcrypt');
+
 /* GET users listing. */
 router.post('/create', function (req, res, next) {
   models.users.create({
     username: req.param('username'),
     email: req.param('email'),
-    password: req.param('password'),
+    password: hashpassword(req.param('password')),
     token: req.param('token')
   }).then(function (users) {
     res.json({ "message": "Customer details saved" })
@@ -16,6 +18,19 @@ router.post('/create', function (req, res, next) {
   })
 });
 
+function hashpassword(password) {
+  bcrypt.genSalt(11, function (err, salt) {
+    if (err) {
+      return console.log(err);
+    }
+    bcrypt.hash(password, salt, function (err, hash) {
+      if (err) {
+        return console.log(err);
+      }
+    })
+    return (password);
+  })
+}
 // router.post('/upsert', function (req, res, next) {
 //   models.customers.upsert({
 //     id: parseInt(req.body.id),
