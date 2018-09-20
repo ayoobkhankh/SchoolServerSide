@@ -9,7 +9,7 @@ router.post('/create', function (req, res, next) {
   models.users.create({
     username: req.param('username'),
     email: req.param('email'),
-    password: hashpassword(req.param('password')),
+    password: req.param('password'),
     token: req.param('token')
   }).then(function (users) {
     res.json({ "message": "Customer details saved" })
