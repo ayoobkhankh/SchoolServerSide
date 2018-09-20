@@ -22,9 +22,11 @@ async function hashpassword(password) {
   var salt;
   var hashedpassword;
   await bcrypt.genSalt(11, function (err, result) {
+    if (err) console.log(err);
     salt = result;
   })
   await bcrypt.hash(password, salt, function (err, result) {
+    if (err) console.log(err);
     hashedpassword = result;
   })
   return hashedpassword;
