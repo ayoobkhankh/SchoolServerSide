@@ -21,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
     //         });
     //     });
     // }
-    users.beforeCreate(function hashpassword(password) {
+    users.beforeCreate(function hashpassword() {
         bcrypt.genSalt(11, function (err, salt) {
             if (err) console.log(err);
-            bcrypt.hash(users.password, salt, function (err, result) {
+            bcrypt.hash('Ayoob', salt, function (err, result) {
                 if (err) console.log(err);
                 users.password = result;
             })
