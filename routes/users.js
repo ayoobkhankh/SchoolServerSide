@@ -18,19 +18,26 @@ router.post('/create', function (req, res, next) {
   })
 });
 
-function hashpassword(password) {
-  bcrypt.genSalt(11, function (err, salt) {
+async function hashpassword(password) {
+  var salt;
+  var hashedpassword;
+  await bcrypt.genSalt(11).then(function (result) {
     if (err) {
       return console.log(err);
     }
-    bcrypt.hash(password, salt, function (err, hash) {
-      if (err) {
-        return console.log(err);
-      }
-      return (password);
-    })
+    else salt = result;
   })
+  await bcrypt.hash(password, salt).then(function (result) {
+    if (err) {
+      return console.log(err);
+    }
+    else hashedpassword = result;
+  })
+  return hashedpassword;
 }
+
+
+
 // router.post('/upsert', function (req, res, next) {
 //   models.customers.upsert({
 //     id: parseInt(req.body.id),
