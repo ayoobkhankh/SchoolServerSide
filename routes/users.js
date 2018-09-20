@@ -27,8 +27,8 @@ function hashpassword(password) {
       if (err) {
         return console.log(err);
       }
+      return (password);
     })
-    return (password);
   })
 }
 // router.post('/upsert', function (req, res, next) {
