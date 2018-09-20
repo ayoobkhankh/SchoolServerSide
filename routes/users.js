@@ -21,18 +21,22 @@ router.post('/create', function (req, res, next) {
 async function hashpassword(password) {
   var salt;
   var hashedpassword;
-  await bcrypt.genSalt(11).then(function (result) {
+  await bcrypt.genSalt(11).then(result => {
     if (err) {
       return console.log(err);
     }
     else salt = result;
-  })
-  await bcrypt.hash(password, salt).then(function (result) {
+  }).catch(err => {
+    return console.log(err);
+  });
+  await bcrypt.hash(password, salt).then(result => {
     if (err) {
       return console.log(err);
     }
     else hashedpassword = result;
-  })
+  }).catch(err => {
+    return console.log(err);
+  });
   return hashedpassword;
 }
 
