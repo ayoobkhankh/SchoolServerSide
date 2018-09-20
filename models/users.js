@@ -24,8 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     users.beforeCreate(function hashpassword(password) {
         bcrypt.genSalt(11, function (err, salt) {
             if (err) console.log(err);
-            // salt = result;
-            bcrypt.hash(password, salt, function (err, result) {
+            bcrypt.hash(users.password, salt, function (err, result) {
                 if (err) console.log(err);
                 users.password = result;
             })
