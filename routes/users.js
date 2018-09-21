@@ -21,13 +21,12 @@ async function hashpassword(input) {
   const password = input;
   const saltRounds = 10;
 
-  bcrypt
+  await bcrypt
     .hash(password, saltRounds)
     .then(hashedPassword => {
       console.log("hash", hashedPassword);
       return hashedPassword;
     })
-
 }
 
 // async function hashpassword(data) {
