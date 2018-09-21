@@ -17,7 +17,7 @@ router.post('/create', function (req, res, next) {
   })
 });
 
-function hashpassword(input) {
+async function hashpassword(input) {
   const password = input;
   const saltRounds = 10;
 
