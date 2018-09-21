@@ -6,12 +6,10 @@ const bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.post('/create', function (req, res, next) {
-  var password = (req.param('password')).toString();
-  var hashedpassword = hashpassword(password);
   models.users.create({
     username: req.param('username'),
     email: req.param('email'),
-    password: hashedpassword,
+    password: req.param('password'),
     token: req.param('token')
   }).then(function (users) {
     res.json({ "message": "Customer details saved" })
@@ -36,19 +34,19 @@ router.post('/create', function (req, res, next) {
 //   return hashedPassword
 // }
 
-function hashpassword(data) {
-  var hashedpassword;
-  bcrypt.genSalt(11, function (err, salt) {
-    if (err) console.log(err);
-    bcrypt.hash(data, salt, function (err, result) {
-      if (err) console.log(err);
-      hashedpassword = result;
-      console.log(result);
-    })
-    return hashedpassword;
-  })
+// function hashpassword(data) {
+//   var hashedpassword;
+//   bcrypt.genSalt(11, function (err, salt) {
+//     if (err) console.log(err);
+//     bcrypt.hash(data, salt, function (err, result) {
+//       if (err) console.log(err);
+//       hashedpassword = result;
+//       console.log(result);
+//     })
+//     return hashedpassword;
+//   })
 
-}
+// }
 
 // hashpassword('Ayoob');
 
