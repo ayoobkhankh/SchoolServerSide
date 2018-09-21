@@ -10,11 +10,13 @@ router.post('/create', function (req, res, next) {
     email: req.param('email'),
     password: req.param('password'),
     token: req.param('token')
-  }).then(function (users) {
-    res.json({ "message": "Customer details saved" })
-  }).catch(function (err) {
-    res.json({ "message": "An error occured!" })
-  })
+  }, {
+      individualHooks: true
+    }).then(function (users) {
+      res.json({ "message": "Customer details saved" })
+    }).catch(function (err) {
+      res.json({ "message": "An error occured!" })
+    })
 });
 
 

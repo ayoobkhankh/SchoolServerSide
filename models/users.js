@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
     };
 
-    users.hook('beforeValidate', (users, options) => {
-        options.individualHooks = true;
+    users.hook('beforeCreate', (users, options) => {
+        // options.individualHooks = true;
         var password = users.password;
         var saltRounds = 10;
         // console.log(password)
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     //     const password = input;
     //     const saltRounds = 10;
 
-    //     await bcrypt
+    //     await bcrypt 
     //         .hash(password, saltRounds)
     //         .then(hashedPassword => {
     //             console.log("hash", hashedPassword);
