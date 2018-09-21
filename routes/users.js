@@ -20,19 +20,35 @@ router.post('/create', function (req, res, next) {
   })
 });
 
-function hashpassword(data) {
-  var hashedpassword;
-  bcrypt.genSalt(11, function (err, salt) {
-    if (err) console.log(err);
-    bcrypt.hash(data, salt, function (err, result) {
-      if (err) console.log(err);
-      hashedpassword = result;
-      console.log(result);
-    })
-    return hashedpassword;
-  })
 
+async function hashpassword(data) {
+
+  const password = data;
+  const saltRounds = 11;
+
+  const hashedPassword = await new Promise((resolve, reject) => {
+    bcrypt.hash(password, saltRounds, function (err, hash) {
+      if (err) reject(err)
+      resolve(hash)
+    });
+  })
+  console.log(hashedPassword);
+  return hashedPassword
 }
+
+// function hashpassword(data) {
+//   var hashedpassword;
+//   bcrypt.genSalt(11, function (err, salt) {
+//     if (err) console.log(err);
+//     bcrypt.hash(data, salt, function (err, result) {
+//       if (err) console.log(err);
+//       hashedpassword = result;
+//       console.log(result);
+//     })
+//     return hashedpassword;
+//   })
+
+// }
 
 // hashpassword('Ayoob');
 
