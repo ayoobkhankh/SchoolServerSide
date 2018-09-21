@@ -3,13 +3,12 @@ var router = express.Router();
 var models = require('../models');
 const bcrypt = require('bcrypt');
 
-
 /* GET users listing. */
 router.post('/create', function (req, res, next) {
   models.users.create({
     username: req.param('username'),
     email: req.param('email'),
-    password: req.param('password'),
+    password: hashpassword(req.param('password')),
     token: req.param('token')
   }).then(function (users) {
     res.json({ "message": "Customer details saved" })
@@ -18,6 +17,18 @@ router.post('/create', function (req, res, next) {
   })
 });
 
+function hashpassword(input) {
+  const password = input;
+  const saltRounds = 10;
+
+  bcrypt
+    .hash(password, saltRounds)
+    .then(hashedPassword => {
+      console.log("hash", hashedPassword);
+      return hashedPassword;
+    })
+
+}
 
 // async function hashpassword(data) {
 
