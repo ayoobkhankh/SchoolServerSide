@@ -5,11 +5,14 @@ const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
     var users = sequelize.define('users', {
-        username: { type: Sequelize.STRING, unique: true },
-        email: { type: Sequelize.STRING, unique: true },
+        username: { type: Sequelize.STRING },
+        email: { type: Sequelize.STRING },
         password: DataTypes.STRING,
         token: Sequelize.STRING
-    }, {});
+    }, {
+
+
+        });
 
     // function cryptPassword(password, callback) {
     //     bcrypt.genSalt(10, function (err, salt) { // Encrypt password using bycrpt module
@@ -21,15 +24,15 @@ module.exports = (sequelize, DataTypes) => {
     //         });
     //     });
     // }
-    users.beforeCreate(function hashpassword() {
-        bcrypt.genSalt(11, function (err, salt) {
-            if (err) console.log(err);
-            bcrypt.hash('Ayoob', salt, function (err, result) {
-                if (err) console.log(err);
-                users.password = result;
-            })
-        })
-    })
+    // users.beforeCreate(function hashpassword() {
+    //     bcrypt.genSalt(11, function (err, salt) {
+    //         if (err) console.log(err);
+    //         bcrypt.hash('Ayoob', salt, function (err, result) {
+    //             if (err) console.log(err);
+    //             users.password = result;
+    //         })
+    //     })
+    // })
 
     // users.beforeCreate(function (users, options, cb) {
     //     debug('Info: ' + 'Storing the password');

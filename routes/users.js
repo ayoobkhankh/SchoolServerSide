@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 
-const bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.post('/create', function (req, res, next) {
@@ -18,28 +17,35 @@ router.post('/create', function (req, res, next) {
   })
 });
 
+function hashpassword() {
+  bcrypt.genSalt(11, function (err, salt) {
+    if (err) console.log(err);
+    bcrypt.hash('Ayoob', salt, function (err, result) {
+      if (err) console.log(err);
+      else console.log(result)
+    })
+  })
+  hashpassword('Ayoob');
 
-// hashpassword('Ayoob');
+  // router.post('/upsert', function (req, res, next) {
+  //   models.customers.upsert({
+  //     id: parseInt(req.body.id),
+  //     CustName: req.body.CustName,
+  //     CustAddress: req.body.CustAddress,
+  //     CustPlace: req.body.CustPlace,
+  //     CustContactPerson: req.body.CustContactPerson,
+  //     CustContactNo: req.body.CustContactNo,
+  //     CustType: req.body.CustType
+  //   })
+  //     .then(function (customers) {
+  //       res.json({ "message": "Created" })
+  //     })
+  //   // jwt.sign({ user: user }, 'secretkey', (err, token) => {}
 
-// router.post('/upsert', function (req, res, next) {
-//   models.customers.upsert({
-//     id: parseInt(req.body.id),
-//     CustName: req.body.CustName,
-//     CustAddress: req.body.CustAddress,
-//     CustPlace: req.body.CustPlace,
-//     CustContactPerson: req.body.CustContactPerson,
-//     CustContactNo: req.body.CustContactNo,
-//     CustType: req.body.CustType
-//   })
-//     .then(function (customers) {
-//       res.json({ "message": "Created" })
-//     })
-//   // jwt.sign({ user: user }, 'secretkey', (err, token) => {}
+  // });
 
-// });
+  // router.get('/', function (req, res, next) {
+  //   res.send('respond with a resource');
+  // });
 
-// router.get('/', function (req, res, next) {
-//   res.send('respond with a resource');
-// });
-
-module.exports = router;
+  module.exports = router;
