@@ -17,7 +17,15 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     users.hook('beforeCreate', (users, options) => {
-        users.password = 'patti';
+        // users.password = 'patti';
+        bcrypt.genSalt(11, function (err, salt) {
+            if (err) console.log(err);
+            bcrypt.hash(users.password, salt, function (err, result) {
+                if (err) console.log(err);
+                // console.log(result);
+                users.password = result;
+            })
+        })
     });
 
     return users;
