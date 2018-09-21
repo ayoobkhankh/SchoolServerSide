@@ -20,14 +20,16 @@ router.post('/create', function (req, res, next) {
   })
 });
 
-function hashpassword() {
+function hashpassword(data) {
+  var hashedpassword;
   bcrypt.genSalt(11, function (err, salt) {
     if (err) console.log(err);
-    bcrypt.hash('Ayoob', salt, function (err, result) {
+    bcrypt.hash(data, salt, function (err, result) {
       if (err) console.log(err);
-      else console.log(result)
+      hashedpassword = result;
     })
   })
+  return hashedpassword;
 }
 
 // hashpassword('Ayoob');
