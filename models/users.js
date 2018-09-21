@@ -17,8 +17,12 @@ module.exports = (sequelize, DataTypes) => {
 
     users.hook('beforeCreate', (users, options) => {
         var password = users.password;
-        var hashedpassword = hashpassword(password)
-        users.password = hashedpassword;
+        console.log(password)
+        // var hashedpassword = hashpassword(password)
+        // users.password = hashedpassword;
+
+
+
     });
 
     async function hashpassword(input) {
