@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         var password = users.password;
         var saltRounds = 10;
         console.log(password)
-        await bcrypt
+        bcrypt
             .hash(password, saltRounds)
             .then(hashedPassword => {
                 users.password = hashedPassword;
