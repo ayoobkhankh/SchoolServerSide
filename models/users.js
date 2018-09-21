@@ -10,13 +10,14 @@ module.exports = (sequelize, DataTypes) => {
         password: DataTypes.STRING,
         token: Sequelize.STRING
     }, {
-            beforeCreate: function (values, next) {
+            beforeCreate: function (users, next) {
+
                 bcrypt.genSalt(11, function (err, salt) {
                     if (err) console.log(err);
-                    bcrypt.hash(values.password, salt, function (err, result) {
+                    bcrypt.hash(users.password, salt, function (err, result) {
                         if (err) console.log(err);
                         console.log(result);
-                        values.password = result;
+                        users.password = result;
                         next();
                     })
                 })
