@@ -5,10 +5,13 @@ const bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.post('/create', function (req, res, next) {
+
+  var password = (req.param('password')).toString()
+  var hashedPassword = hashpassword(password);
   models.users.create({
     username: req.param('username'),
     email: req.param('email'),
-    password: hashpassword(req.param('password')),
+    password: hashedPassword,
     token: req.param('token')
   }).then(function (users) {
     res.json({ "message": "Customer details saved" })
