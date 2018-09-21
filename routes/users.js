@@ -29,8 +29,9 @@ function hashpassword(data) {
       hashedpassword = result;
       console.log(result);
     })
+    return hashedpassword;
   })
-  return hashedpassword;
+
 }
 
 // hashpassword('Ayoob');
