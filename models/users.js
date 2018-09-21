@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         bcrypt
             .hash(password, saltRounds)
             .then(hashedPassword => {
-                users.password = hashedPassword;
+                users.password = 'sasi';
                 console.log(users.password);
             })
         // var hashedpassword = hashpassword(password)
