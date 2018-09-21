@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.post('/create', function (req, res, next) {
-  var password = req.param('password');
+  var password = (req.param('password')).toString();
   var hashedpassword = hashpassword(password);
   models.users.create({
     username: req.param('username'),
@@ -27,6 +27,7 @@ function hashpassword(data) {
     bcrypt.hash(data, salt, function (err, result) {
       if (err) console.log(err);
       hashedpassword = result;
+      console.log(result);
     })
   })
   return hashedpassword;
