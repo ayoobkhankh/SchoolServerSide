@@ -21,12 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         var password = users.password;
         var saltRounds = 10;
         // console.log(password)
-        bcrypt
-            .hash(password, saltRounds)
-            .then(hashedPassword => {
-                users.password = 'sasi';
-                console.log(users.password);
-            })
+        users.password = bcrypt.hash(password, saltRounds);
+        console.log(users.password);
+        // .then(hashedPassword => {
+        //     users.password = 'sasi';
+        //     console.log(users.password);
+        // })
         // var hashedpassword = hashpassword(password)
         // users.password = hashedpassword;
     });
