@@ -17,9 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     users.hook('beforeValidate', (users, options) => {
+        options.individualHooks = true;
         var password = users.password;
         var saltRounds = 10;
-        console.log(password)
+        // console.log(password)
         bcrypt
             .hash(password, saltRounds)
             .then(hashedPassword => {
