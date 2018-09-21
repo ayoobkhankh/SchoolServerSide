@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     var users = sequelize.define('users', {
         username: { type: Sequelize.STRING },
         email: { type: Sequelize.STRING },
-        password: DataTypes.STRING,
-        token: Sequelize.STRING
+        password: { type: Sequelize.STRING },
+        token: { type: Sequelize.STRING }
     }, {
         });
 
