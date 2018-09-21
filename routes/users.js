@@ -6,10 +6,12 @@ const bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.post('/create', function (req, res, next) {
+  var password = req.param('password');
+  var hashedpassword = hashpassword(password);
   models.users.create({
     username: req.param('username'),
     email: req.param('email'),
-    password: req.param('password'),
+    password: hashedpassword,
     token: req.param('token')
   }).then(function (users) {
     res.json({ "message": "Customer details saved" })
@@ -27,7 +29,8 @@ function hashpassword() {
     })
   })
 }
-hashpassword('Ayoob');
+
+// hashpassword('Ayoob');
 
 // router.post('/upsert', function (req, res, next) {
 //   models.customers.upsert({
