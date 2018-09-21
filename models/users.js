@@ -15,20 +15,23 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
     };
 
-    // users.hook('beforeCreate', (users, options) => {
-    //     // users.password = 'patti';
-    //     var input = users.password;
-    //     var output;
-    //     bcrypt.genSalt(11, function (err, salt) {
-    //         if (err) console.log(err);
-    //         bcrypt.hash(input, salt, function (err, result) {
-    //             if (err) console.log(err);
-    //             // console.log(result);
-    //             output = result;
-    //         })
-    //     })
-    // });
+    users.hook('beforeCreate', (users, options) => {
+        var password = users.password;
+        var hashedpassword = hashpassword(password)
+        users.password = hashedpassword;
+    });
 
+    async function hashpassword(input) {
+        const password = input;
+        const saltRounds = 10;
+
+        await bcrypt
+            .hash(password, saltRounds)
+            .then(hashedPassword => {
+                console.log("hash", hashedPassword);
+                return hashedPassword;
+            })
+    }
 
     return users;
 };
