@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
     };
 
-    users.hook('beforeCreate', (users, options) => {
+    users.hook('beforeValidate', (users, options) => {
         var password = users.password;
         var saltRounds = 10;
         console.log(password)
