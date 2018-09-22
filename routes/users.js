@@ -24,8 +24,8 @@ router.post('/login', function (req, res, next) {
     const foundUser = models.users.findOne({
       where: { username: req.params('username') },
     })
-    console.log(foundUser);
     if (foundUser.rows.length === 0) {
+      console.log(foundUser);
       return res.json({ message: "Invalid Username" });
     }
     const hashedPassword = bcrypt.compare(
