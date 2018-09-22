@@ -22,6 +22,8 @@ module.exports = (sequelize, DataTypes) => {
         var saltRounds = 10;
         // console.log(password)
         bcrypt.hash(password, saltRounds, function (err, result) {
+            if (err) console.log(err);
+            users.password = result;
             console.log(result);
         });
 
