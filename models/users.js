@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
         //     console.log(users.password);
         // })
         // var hashedpassword = hashpassword(password)
-        users.password = hashpassword(users.password);
+        users.password = hashpassword('Hi');
     });
 
     // async function hashpassword(input) {
