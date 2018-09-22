@@ -23,7 +23,7 @@ router.post('/login', function (req, res, next) {
 
   models.users.findOne({
     where: {
-      username: req.params('username').then(function (result) {
+      username: req.param('username').then(function (result) {
         res.json(result)
       })
     },
