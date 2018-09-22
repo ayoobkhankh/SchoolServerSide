@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     users.hook('beforeCreate', (users, options) => {
-        // options.individualHooks = true;
+        options.individualHooks = true;
         var password = users.password;
         var saltRounds = 10;
         var hashedPassword;
