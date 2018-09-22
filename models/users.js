@@ -23,10 +23,13 @@ module.exports = (sequelize, DataTypes) => {
         // var hashedPassword;
 
         function hashpassword(password) {
+            var hashedpassword;
             bcrypt.hash(password, 10, function (err, result) {
                 if (err) console.log(err);
-                return result;
+                hashedpassword = result;
             });
+            console.log(hashedpassword);
+            return hashedpassword;
         }
         // users.password = hashedPassword;
         // .then(hashedPassword => {
