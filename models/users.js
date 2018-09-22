@@ -17,24 +17,24 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     users.hook('beforeCreate', (users, options) => {
-        options.individualHooks = true;
-        var password = users.password;
-        var saltRounds = 10;
-        var hashedPassword;
+        // options.individualHooks = true;
+        // var password = users.password;
+        // var saltRounds = 10;
+        // var hashedPassword;
 
-        bcrypt.hash(password, saltRounds, function (err, result) {
-            if (err) console.log(err);
-            hashedPassword = result;
-            console.log(result);
-        });
+        // bcrypt.hash(password, saltRounds, function (err, result) {
+        //     if (err) console.log(err);
+        //     hashedPassword = result;
+        //     console.log(result);
+        // });
 
-        users.password = hashedPassword;
+        // users.password = hashedPassword;
         // .then(hashedPassword => {
         //     users.password = 'sasi';
         //     console.log(users.password);
         // })
         // var hashedpassword = hashpassword(password)
-        // users.password = hashedpassword;
+        users.password = "hashedpassword";
     });
 
     // async function hashpassword(input) {
