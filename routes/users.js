@@ -19,7 +19,7 @@ router.post('/create', function (req, res, next) {
     })
 });
 
-router.post('/login', function (req, res, next) {
+router.get('/login', function (req, res, next) {
   try {
     const foundUser = models.users.findOne({
       where: { id: req.param('username') },
@@ -39,4 +39,5 @@ router.post('/login', function (req, res, next) {
     return res.json(e);
   }
 });
+
 module.exports = router;
