@@ -25,17 +25,17 @@ router.post('/login', function (req, res, next) {
       where: { username: req.params('username') },
     })
     if (foundUser.rows.length === 0) {
-      console.log(foundUser);
       return res.json({ message: "Invalid Username" });
     }
-    const hashedPassword = bcrypt.compare(
-      req.params('username'),
-      foundUser.rows[0].password
-    );
-    if (hashedPassword === false) {
-      return res.json({ message: "Invalid Password" });
-    }
-    return res.json({ message: "Logged In!" });
+    // const hashedPassword = bcrypt.compare(
+    //   req.params('username'),
+    //   foundUser.rows[0].password
+    // );
+    // if (hashedPassword === false) {
+    //   return res.json({ message: "Invalid Password" });
+    // }
+    return res.json({ message: foundUser });
+    // return res.json({ message: "Logged In!" });
   } catch (e) {
     return res.json(e);
   }
