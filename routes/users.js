@@ -22,7 +22,7 @@ router.post('/create', function (req, res, next) {
 router.post('/login', function (req, res, next) {
   try {
     const foundUser = models.users.findOne({
-      where: { id: req.param('username') },
+      where: { username: req.param('username') },
     })
     if (foundUser.rows.length === 0) {
       return res.json({ message: "Invalid Username" });
