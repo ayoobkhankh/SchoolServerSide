@@ -21,8 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         var password = users.password;
         var saltRounds = 10;
         // console.log(password)
-        users.password = bcrypt.hash(password, saltRounds);
-        console.log(users.password);
+        bcrypt.hash(password, saltRounds, function (err, result) {
+            console.log(result);
+        });
+
         // .then(hashedPassword => {
         //     users.password = 'sasi';
         //     console.log(users.password);
