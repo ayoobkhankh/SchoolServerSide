@@ -16,17 +16,21 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
     };
 
+    var hashedPassword;
+
     users.hook('beforeCreate', (users, options) => {
         // options.individualHooks = true;
         var password = users.password;
         var saltRounds = 10;
         // console.log(password)
+
         bcrypt.hash(password, saltRounds, function (err, result) {
             if (err) console.log(err);
-            users.password = result;
+            hashedPassword = result;
             console.log(result);
         });
 
+        users.password = hashedPassword;
         // .then(hashedPassword => {
         //     users.password = 'sasi';
         //     console.log(users.password);
