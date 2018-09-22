@@ -34,7 +34,7 @@ router.post('/login', function (req, res, next) {
     // if (hashedPassword === false) {
     //   return res.json({ message: "Invalid Password" });
     // }
-    return res.json({ message: foundUser });
+    return res.json({ message: "foundUser" });
     // return res.json({ message: "Logged In!" });
   } catch (e) {
     return res.json(e);
