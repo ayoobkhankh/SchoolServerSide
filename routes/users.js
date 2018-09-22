@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
-
+var bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.post('/create', function (req, res, next) {
@@ -19,58 +19,24 @@ router.post('/create', function (req, res, next) {
     })
 });
 
-
-
-// async function hashpassword(data) {
-
-//   var password = data;
-//   var saltRounds = 11;
-
-//   var hashedPassword = await new Promise((resolve, reject) => {
-//     bcrypt.hash(password, saltRounds, function (err, hash) {
-//       if (err) reject(err)
-//       resolve(hash)
-//     });
-//   })
-//   console.log(hashedPassword);
-//   return hashedPassword
-// }
-
-// function hashpassword(data) {
-//   var hashedpassword;
-//   bcrypt.genSalt(11, function (err, salt) {
-//     if (err) console.log(err);
-//     bcrypt.hash(data, salt, function (err, result) {
-//       if (err) console.log(err);
-//       hashedpassword = result;
-//       console.log(result);
-//     })
-//     return hashedpassword;
-//   })
-
-// }
-
-// hashpassword('Ayoob');
-
-// router.post('/upsert', function (req, res, next) {
-//   models.customers.upsert({
-//     id: parseInt(req.body.id),
-//     CustName: req.body.CustName,
-//     CustAddress: req.body.CustAddress,
-//     CustPlace: req.body.CustPlace,
-//     CustContactPerson: req.body.CustContactPerson,
-//     CustContactNo: req.body.CustContactNo,
-//     CustType: req.body.CustType
-//   })
-//     .then(function (customers) {
-//       res.json({ "message": "Created" })
-//     })
-//   // jwt.sign({ user: user }, 'secretkey', (err, token) => {}
-
-// });
-
-// router.get('/', function (req, res, next) {
-//   res.send('respond with a resource');
-// });
-
+router.post('/login', function (req, res, next) {
+  try {
+    const foundUser = models.users.findOne({
+      where: { id: req.param('username') },
+    })
+    if (foundUser.rows.length === 0) {
+      return res.json({ message: "Invalid Username" });
+    }
+    const hashedPassword = await bcrypt.compare(
+      req.param('username'),
+      foundUser.rows[0].password
+    );
+    if (hashedPassword === false) {
+      return res.json({ message: "Invalid Password" });
+    }
+    return res.json({ message: "Logged In!" });
+  } catch (e) {
+    return res.json(e);
+  }
+});
 module.exports = router;
