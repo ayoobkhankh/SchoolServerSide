@@ -27,7 +27,7 @@ router.post('/login', function (req, res, next) {
     if (foundUser.rows.length === 0) {
       return res.json({ message: "Invalid Username" });
     }
-    const hashedPassword = await bcrypt.compare(
+    const hashedPassword = bcrypt.compare(
       req.param('username'),
       foundUser.rows[0].password
     );
