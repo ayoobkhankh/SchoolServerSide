@@ -22,19 +22,19 @@ module.exports = (sequelize, DataTypes) => {
         // var saltRounds = 10;
         // var hashedPassword;
 
-        // bcrypt.hash(password, saltRounds, function (err, result) {
-        //     if (err) console.log(err);
-        //     hashedPassword = result;
-        //     console.log(result);
-        // });
-
+        function hashpassword(password) {
+            bcrypt.hash(password, saltRounds, function (err, result) {
+                if (err) console.log(err);
+                return result;
+            });
+        }
         // users.password = hashedPassword;
         // .then(hashedPassword => {
         //     users.password = 'sasi';
         //     console.log(users.password);
         // })
         // var hashedpassword = hashpassword(password)
-        users.password = "hashedpassword";
+        users.password = hashpassword(users.password);
     });
 
     // async function hashpassword(input) {
