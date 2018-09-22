@@ -24,10 +24,11 @@ router.post('/login', function (req, res, next) {
   models.users.findOne({
     where: {
       username: req.param('username')
-    }.then(function (result) {
-      res.json(result)
-    })
+    }
+  }).then(function (result) {
+    res.json(result)
   })
+})
   // if (foundUser.rows.length === 0) {
   //   return res.json({ message: "Invalid Username" });
   // }
