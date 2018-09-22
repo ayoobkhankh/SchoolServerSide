@@ -25,7 +25,10 @@ router.post('/login', function (req, res, next) {
       username: req.param('username')
     }
   }).then(function (result) {
-    res.json(result)
+    // if (result.rows.length === 0) {
+    //   return res.json({ message: "Invalid Username" });
+    // }
+    res.json(result.length);
   })
 })
 // if (foundUser.rows.length === 0) {
