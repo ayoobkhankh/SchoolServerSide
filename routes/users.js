@@ -19,8 +19,9 @@ router.post('/create', function (req, res, next) {
     })
 });
 
-router.post('/login', function (req, res, next) {
+router.post('/login', async function (req, res, next) {
   models.users.findOne({
+    attributes: ['username', 'id'],
     where: {
       username: req.param('username')
     }
@@ -28,7 +29,7 @@ router.post('/login', function (req, res, next) {
     // if (result.rows.length === 0) {
     //   return res.json({ message: "Invalid Username" });
     // }
-    console.log(result.users.datavalues);
+    console.log(result);
     res.json(result);
   })
 })
