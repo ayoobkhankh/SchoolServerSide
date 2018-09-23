@@ -32,7 +32,7 @@ router.post('/login', async function (req, res, next) {
     // console.log(result);
     // res.json(result);
     const hashedPassword = bcrypt.compare(
-      req.param('username'),
+      req.param('password'),
       result.password
     );
     if (hashedPassword === false) {
