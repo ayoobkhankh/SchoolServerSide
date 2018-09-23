@@ -26,9 +26,9 @@ router.post('/login', async function (req, res, next) {
       username: req.param('username')
     }
   }).then(function (result) {
-    // if (result.rows.length === 0) {
-    //   return res.json({ message: "Invalid Username" });
-    // }
+    if (result.rows.length === 0) {
+      return res.json({ message: "Invalid Username" });
+    }
     console.log(result);
     res.json(result);
   })
