@@ -29,9 +29,7 @@ router.post('/login', async function (req, res, next) {
     if (!result) {
       return res.json({ message: "Invalid Username" });
     }
-    // console.log(result);
-    // res.json(result);
-    const hashedPassword = bcrypt.compare(
+    var hashedPassword = bcrypt.compare(
       req.param('password'),
       result.password
     );
@@ -39,8 +37,6 @@ router.post('/login', async function (req, res, next) {
       return res.json({ message: "Invalid Password" });
     }
     return res.json({ message: "Logged In" });
-    // return res.json({ message: "Logged In!" });
-
   })
 })
 
