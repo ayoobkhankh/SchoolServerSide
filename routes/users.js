@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 
 router.post('/create', function (req, res, next) {
   models.users.create({
@@ -35,7 +36,10 @@ router.post('/login', async function (req, res, next) {
     if (hashedPassword === false) {
       return res.json({ message: "Invalid Password" });
     }
-    return res.json({ message: "Logged In" });
+    jwt.sign({ username: req.param('username') }, 'secretkey', (err, token) => {
+      // res.json({ token: token })
+      return res.json({ message: token });
+    });
   })
 })
 
