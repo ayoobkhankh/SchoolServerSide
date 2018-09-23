@@ -21,7 +21,7 @@ router.post('/create', function (req, res, next) {
 
 router.post('/login', async function (req, res, next) {
   models.users.findOne({
-    attributes: ['username', 'id'],
+    attributes: ['username', 'id', 'password'],
     where: {
       username: req.param('username')
     }
@@ -29,21 +29,21 @@ router.post('/login', async function (req, res, next) {
     if (!result) {
       return res.json({ message: "Invalid Username" });
     }
-    console.log(result);
-    res.json(result);
+    // console.log(result);
+    // res.json(result);
+    const hashedPassword = bcrypt.compare(
+      req.param('username'),
+      result.password
+    );
+    if (hashedPassword === false) {
+      return res.json({ message: "Invalid Password" });
+    }
+    return res.json({ message: "Logged In" });
+    // return res.json({ message: "Logged In!" });
+
   })
 })
-// if (foundUser.rows.length === 0) {
-//   return res.json({ message: "Invalid Username" });
-// }
-// const hashedPassword = bcrypt.compare(
-//   req.params('username'),
-//   foundUser.rows[0].password
-// );
-// if (hashedPassword === false) {
-//   return res.json({ message: "Invalid Password" });
-// }
-//   console.log(foundUser);
+
 //   return res.json({ message: "foundUser" });
 //   // return res.json({ message: "Logged In!" });
 // } catch (e) {
