@@ -3,7 +3,6 @@ var router = express.Router();
 var models = require('../models');
 var bcrypt = require('bcrypt');
 
-/* GET users listing. */
 router.post('/create', function (req, res, next) {
   models.users.create({
     username: req.params('username'),
