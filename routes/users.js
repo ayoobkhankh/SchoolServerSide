@@ -15,7 +15,7 @@ router.post('/create', function (req, res, next) {
     }).then(function (users) {
       res.json({ "message": "Customer details saved" })
     }).catch(function (err) {
-      console.log(req.param('username'));
+      console.log(req.param('password'));
       res.json({ "message": "An error occured!" })
     })
 });
