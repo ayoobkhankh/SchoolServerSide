@@ -6,10 +6,10 @@ var jwt = require('jsonwebtoken');
 
 router.post('/create', function (req, res, next) {
   models.users.create({
-    username: req.params('username'),
-    email: req.params('email'),
-    password: req.params('password'),
-    token: req.params('token')
+    username: req.param('username'),
+    email: req.param('email'),
+    password: req.param('password'),
+    token: req.param('token')
   }, {
       individualHooks: true
     }).then(function (users) {
